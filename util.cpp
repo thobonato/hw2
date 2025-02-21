@@ -30,6 +30,7 @@ std::set<std::string> parseStringToWords(string rawWords)
                 words.insert(word);
                 word = "";
             }
+            word = "";
         } else {
             word.push_back(*it);
         }

@@ -134,7 +134,7 @@ std::string MyDataStore::addToCart(std::string username, Product* prod){
     }
 
     if(u == nullptr){
-        return "Invalid username";
+        return "Invalid request\n\n";
     }
     
     // if they don't have a cart
@@ -158,7 +158,7 @@ std::string MyDataStore::viewCart(std::string username){
     }
 
     if(u == nullptr){
-        return "Invalid username";
+        return "Invalid username\n";
     }
     
     // if they have a cart
@@ -189,7 +189,7 @@ std::string MyDataStore::buyCart(std::string username){
     }
 
     if(u == nullptr){
-        return "Invalid username";
+        return "Invalid username\n";
     }
     
     // check their pending cart
@@ -200,7 +200,7 @@ std::string MyDataStore::buyCart(std::string username){
         std::vector<Product*> newCart;
         for(prod = userCart.begin(); prod != userCart.end(); ++prod){
             // check for insufficient funds!!
-            if (u->getBalance() > (*prod)->getPrice()){
+            if ((*prod)->getQty() > 0 && u->getBalance() >= (*prod)->getPrice()){
                 // decrease number of available items of that product
                 (*prod)->subtractQty(1);
                 // decrease the user's cash balance

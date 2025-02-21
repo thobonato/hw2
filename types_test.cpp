@@ -11,7 +11,7 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-    Clothing bk = Clothing("movie", "Data Abstraction & Problem Solving with C++", 79.99, 20, "978-013292372-9", "Carrano and Henry");
+    Clothing bk = Clothing("movie", "Data Abstraction & Problem Solving with C++", 79.99, 20, "111-000000000-1", "A. Robot");
     cout << bk.displayString();
     std::cout << "\n\n\n" << endl;
     std::set<std::string> st = bk.keywords();

@@ -106,8 +106,11 @@ int main(int argc, char* argv[])
                 int search_hit_number;
                 ss >> username;
                 ss >> search_hit_number;
-                
-                cout << ds.addToCart(username, hits[search_hit_number - 1]);
+                if(search_hit_number >= 1 && search_hit_number <= hits.size()){
+                    cout << ds.addToCart(username, hits[search_hit_number - 1]);
+                } else {
+                    cout << "Invalid request." << endl;
+                }
             }
             else if ( cmd == "VIEWCART") {
                 string username;
