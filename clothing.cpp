@@ -29,7 +29,7 @@ std::string Clothing::getBrand() const
 }
 
 std::set<std::string> Clothing::keywords() const
-{
+{   
     return parseStringToWords(displayString());
 }
 

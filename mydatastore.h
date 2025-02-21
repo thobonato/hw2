@@ -20,9 +20,16 @@ public:
 
     void dump(std::ostream& ofile);
 
+    std::string addToCart(std::string username, Product* prod);
+    
+    std::string viewCart(std::string username);
+
+    std::string buyCart(std::string username);
+
 protected:
     std::vector<User*> users_;
     std::vector<Product*> products_;
+    std::map<User*, std::vector<Product*>> cart_;
 };
 
 
