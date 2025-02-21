@@ -13,9 +13,9 @@
 template <typename T>
 std::set<T> setIntersection(std::set<T>& s1, std::set<T>& s2)
 {
-    std::set<T> st;
-    std::set<int>::iterator it;
-    std::set<int>::iterator it2;
+    typename std::set<T> st;
+    typename std::set<T>::iterator it;
+    typename std::set<T>::iterator it2;
 
     // iterate through s1
     for(it = s1.begin(); it != s1.end(); ++it){
