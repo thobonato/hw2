@@ -167,10 +167,13 @@ std::string MyDataStore::viewCart(std::string username){
         // iterate through empty carts and send out the dump of them
         std::vector<Product*>& userCart = cart_[u];
         std::vector<Product*>::iterator prod;
+        int count = 0;
         for(prod = userCart.begin(); prod != userCart.end(); ++prod)
         {
-            res += (*prod)->displayString() + "\n";
+            res += "Item " + to_string(count) + "\n" + (*prod)->displayString() + "\n";
+            count++;
         }
+        res += "\n";
     }
     return res;
 }
