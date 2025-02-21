@@ -19,17 +19,19 @@ MyDataStore::MyDataStore()
 MyDataStore::~MyDataStore() 
 {
     // deallocate users_
-    // std::vector<User*>::iterator user;
-    // for(user = users_.begin(); user != users_.end(); ++user){
-    //     delete (*user);
-    // }
+    std::vector<User*>::iterator user;
+    for(user = users_.begin(); user != users_.end(); ++user){
+        delete (*user);
+    }
     
-    // // deallocate products_
-    // std::vector<Product*>::iterator prod;
-    // for(prod = products_.begin(); prod != products_.end(); ++prod){
-    //     delete (*prod);
-    // }
-    // std::cout << "deleted all" << std::endl;
+    // deallocate products_
+    std::vector<Product*>::iterator prod;
+    for(prod = products_.begin(); prod != products_.end(); ++prod){
+        delete (*prod);
+    }
+    #ifdef DEBUG
+    std::cout << "deleted all" << std::endl;
+    #endif
 }
 
 void MyDataStore::addProduct(Product* p)
