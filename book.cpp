@@ -30,7 +30,7 @@ std::string Book::getAuthor() const
 
 std::set<std::string> Book::keywords() const
 {
-    return parseStringToWords(displayString());
+    return parseStringToWords(convToLower(displayString()));
 }
 
 std::string Book::displayString() const

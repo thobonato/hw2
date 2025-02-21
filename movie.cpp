@@ -30,7 +30,7 @@ std::string Movie::getRating() const
 
 std::set<std::string> Movie::keywords() const
 {
-    return parseStringToWords(displayString());
+    return parseStringToWords(convToLower(displayString()));
 }
 
 std::string Movie::displayString() const

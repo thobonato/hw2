@@ -107,7 +107,7 @@ int main(int argc, char* argv[])
                 ss >> username;
                 ss >> search_hit_number;
                 
-                cout << ds.addToCart(username, hits[search_hit_number]);
+                cout << ds.addToCart(username, hits[search_hit_number - 1]);
             }
             else if ( cmd == "VIEWCART") {
                 string username;

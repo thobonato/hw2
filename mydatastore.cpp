@@ -19,17 +19,17 @@ MyDataStore::MyDataStore()
 MyDataStore::~MyDataStore() 
 {
     // deallocate users_
-    std::vector<User*>::iterator user;
-    for(user = users_.begin(); user != users_.end(); ++user){
-        delete (*user);
-    }
+    // std::vector<User*>::iterator user;
+    // for(user = users_.begin(); user != users_.end(); ++user){
+    //     delete (*user);
+    // }
     
-    // deallocate products_
-    std::vector<Product*>::iterator prod;
-    for(prod = products_.begin(); prod != products_.end(); ++prod){
-        delete (*prod);
-    }
-    std::cout << "deleted all" << std::endl;
+    // // deallocate products_
+    // std::vector<Product*>::iterator prod;
+    // for(prod = products_.begin(); prod != products_.end(); ++prod){
+    //     delete (*prod);
+    // }
+    // std::cout << "deleted all" << std::endl;
 }
 
 void MyDataStore::addProduct(Product* p)
@@ -122,17 +122,16 @@ void MyDataStore::dump(std::ostream& ofile)
 
 std::string MyDataStore::addToCart(std::string username, Product* prod){
     // if is not in users
-    bool userFound = false;
-    User* u;
+    User* u = nullptr;
     std::vector<User*>::iterator user;
     for(user = users_.begin(); user != users_.end(); ++user){
         if((*user)->getName() == username){
-            userFound = true;
             u = (*user);
+            break;
         }
     }
 
-    if(!userFound){
+    if(u == nullptr){
         return "Invalid username";
     }
     
@@ -147,17 +146,16 @@ std::string MyDataStore::addToCart(std::string username, Product* prod){
 
 std::string MyDataStore::viewCart(std::string username){
     // if is not in users
-    bool userFound = false;
-    User* u;
+    User* u = nullptr;
     std::vector<User*>::iterator user;
     for(user = users_.begin(); user != users_.end(); ++user){
         if((*user)->getName() == username){
-            userFound = true;
             u = (*user);
+            break;
         }
     }
 
-    if(!userFound){
+    if(u == nullptr){
         return "Invalid username";
     }
     
@@ -165,33 +163,34 @@ std::string MyDataStore::viewCart(std::string username){
     std::string res;
     if(cart_.find(u) != cart_.end()){
         // iterate through empty carts and send out the dump of them
-        std::vector<Product*> userCart = cart_[u];
+        std::vector<Product*>& userCart = cart_[u];
         std::vector<Product*>::iterator prod;
         for(prod = userCart.begin(); prod != userCart.end(); ++prod)
+        {
             res += (*prod)->displayString() + "\n";
+        }
     }
     return res;
 }
 
 std::string MyDataStore::buyCart(std::string username){
     // if is not in users
-    bool userFound = false;
-    User* u;
+    User* u = nullptr;
     std::vector<User*>::iterator user;
     for(user = users_.begin(); user != users_.end(); ++user){
         if((*user)->getName() == username){
-            userFound = true;
             u = (*user);
+            break;
         }
     }
 
-    if(!userFound){
+    if(u == nullptr){
         return "Invalid username";
     }
     
     // check their pending cart
     if(cart_.find(u) != cart_.end()){
-        std::vector<Product*> userCart = cart_[u];
+        std::vector<Product*>& userCart = cart_[u];
         // buy it out one by one
         std::vector<Product*>::iterator prod;
         std::vector<Product*> newCart;
